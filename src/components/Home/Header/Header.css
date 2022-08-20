@@ -1,0 +1,9 @@
+.activeNavItem {
+  background-color: #ffc107;
+  color: #000 !important;
+  border-radius: 5px;
+}
+
+.logo-jira {
+  font-size: 25px;
+}
