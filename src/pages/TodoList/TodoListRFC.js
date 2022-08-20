@@ -4,7 +4,7 @@ import "./TodoList.css";
 
 export default function TodoListRFC(props) {
   // reset
-  const resetFormRef = useRef(null);
+  const inputEl = useRef();
 
   // use STATE
   let [state, setState] = useState({
@@ -80,10 +80,9 @@ export default function TodoListRFC(props) {
     promise.catch((errors) => {
       alert(errors.response.data);
     });
-  };
-  //reset form
-  const resetForm = () => {
-    resetFormRef.current.focus();
+
+    // reset form
+    inputEl.current.value = "";
   };
 
   // render Task Todo
@@ -207,7 +206,6 @@ export default function TodoListRFC(props) {
           <img src={require("./images/X2oObC4.png")} alt="" />
         </div>
         <form className="card__body" onSubmit={addTask}>
-          <button onClick={resetForm} type="reset" style={{ opacity: 0 }}></button>
           <div className="card__content">
             <div className="card__title">
               <h2>To-Do List App</h2>
@@ -215,6 +213,7 @@ export default function TodoListRFC(props) {
             </div>
             <div className="card__add">
               <input
+                ref={inputEl}
                 name="taskName"
                 onChange={handleChange}
                 id="newTask"
@@ -225,6 +224,7 @@ export default function TodoListRFC(props) {
                 <i className="fa fa-plus" />
               </button>
             </div>
+            <span className="text text-danger">{state.errors.taskName}</span>
             <div className="card__todo">
               {/* Uncompleted tasks */}
               <ul className="todo" id="todo">
