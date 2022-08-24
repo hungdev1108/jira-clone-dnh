@@ -1,6 +1,6 @@
 .activeNavItem {
-  background-color: #ffc107;
-  color: #000 !important;
+  color: #ffc107 !important;
+  /* color: #000 !important; */
   border-radius: 5px;
 }
 

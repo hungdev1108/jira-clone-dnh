@@ -1,24 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addTaskApi,
-  checkTaskApi,
-  deleteTaskApi,
-  getTaskListApi,
-  rejectTaskApi,
-} from "../../redux/actions/ToDoListAction";
+import axios from "axios";
+import React, { useEffect, useState, useRef } from "react";
 import "./TodoList.css";
 
-export default function TodoListRedux(props) {
-  // lấy taskList từ redux
-  const { taskList } = useSelector((state) => state.TodoListReducer);
-  const dispatch = useDispatch();
-
+export default function TodoListSaga(props) {
   // reset
   const inputEl = useRef();
 
   // use STATE
   let [state, setState] = useState({
+    taskList: [],
     values: {
       taskName: "",
     },
@@ -26,11 +16,6 @@ export default function TodoListRedux(props) {
       taskName: "",
     },
   });
-
-  // get TaskList
-  const getTaskList = () => {
-    dispatch(getTaskListApi());
-  };
 
   // handleChange
   //   console.log(state);
@@ -57,18 +42,9 @@ export default function TodoListRedux(props) {
     });
   };
 
-  // handleSubmit
-  const addTask = (e) => {
-    e.preventDefault();
-    // Xứ lý nhận dữ liệu từ người dùng đăng nhập => gọi action addTaskApi()
-    dispatch(addTaskApi(state.values.taskName));
-    // reset form
-    inputEl.current.value = "";
-  };
-
   // render Task Todo
   const renderTaskToDo = () => {
-    return taskList
+    return state.taskList
       .filter((item) => !item.status)
       .map((item, index) => {
         return (
@@ -96,7 +72,7 @@ export default function TodoListRedux(props) {
 
   // render Task Completed
   const renderTaskCompleted = () => {
-    return taskList
+    return state.taskList
       .filter((item) => item.status)
       .map((item, index) => {
         return (
@@ -128,25 +104,28 @@ export default function TodoListRedux(props) {
       });
   };
 
-  // deleteTask
-  const deleteTask = (taskName) => {
-    dispatch(deleteTaskApi(taskName));
+  // get TaskList
+  const getTaskList = () => {};
+
+  // addTask handleSubmit
+  const addTask = (e) => {
+    e.preventDefault();
+
+    // reset form
+    inputEl.current.value = "";
   };
+
+  // deleteTask
+  const deleteTask = (taskName) => {};
 
   // checkTask
-  const checkTask = (taskName) => {
-    dispatch(checkTaskApi(taskName));
-  };
+  const checkTask = (taskName) => {};
 
   // rejectTask
-  const rejectTask = (taskName) => {
-    dispatch(rejectTaskApi(taskName));
-  };
+  const rejectTask = (taskName) => {};
 
   //useEffect
   useEffect(() => {
-    getTaskList();
-
     return () => {};
   }, []);
 
@@ -160,7 +139,7 @@ export default function TodoListRedux(props) {
           <div className="card__content">
             <div className="card__title">
               <h2>To-Do List App</h2>
-              <p>August 24, 2022</p>
+              <p>August 20, 2022</p>
             </div>
             <div className="card__add">
               <input

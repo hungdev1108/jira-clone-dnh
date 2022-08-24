@@ -1,47 +1,69 @@
 import axios from "axios";
 import { GET_TASK_API } from "../constants/ToDoListConst";
 
+// Action có 2 loại
+// Action thực thi ngay làm thay đổi reducer
+// Action phải thực hiện xử lý rồi mới gọi action 1 thực thi (async action)
+
 export const getTaskListApi = () => {
   // Tiền xử lý dữ liệu => Xử lý function
 
-  return (dispatch) => {
-    let promise = axios({
-      url: "https://svcy.myclass.vn/api/ToDoList/GetAllTask",
-      method: "GET",
-    });
-
-    promise.then((result) => {
-      //   console.log(result.data);
-      dispatch({
-        type: GET_TASK_API,
-        taskList: result.data,
+  return async (dispatch) => {
+    try {
+      let { data, status, ...res } = await axios({
+        url: "https://svcy.myclass.vn/api/ToDoList/GetAllTask",
+        method: "GET",
       });
-    });
-    promise.catch((err) => {
-      console.log(err);
-    });
+      if (status === 200) {
+        dispatch({
+          type: GET_TASK_API,
+          taskList: data,
+        });
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+
+    // promise.then((result) => {
+    //   //   console.log(result.data);
+    //   dispatch({
+    //     type: GET_TASK_API,
+    //     taskList: result.data,
+    //   });
+    // });
+    // promise.catch((err) => {
+    //   console.log(err);
+    // });
   };
 };
 
 export const addTaskApi = (taskName) => {
   // Tiền xử lý dữ liệu => Xử lý function
 
-  return (dispatch) => {
-    let promise = axios({
-      url: "https://svcy.myclass.vn/api/ToDoList/AddTask",
-      method: "POST",
-      data: {
-        taskName: taskName,
-      },
-    });
+  return async (dispatch) => {
+    try {
+      let { data, status, ...res } = await axios({
+        url: "https://svcy.myclass.vn/api/ToDoList/AddTask",
+        method: "POST",
+        data: {
+          taskName: taskName,
+        },
+      });
 
-    promise.then((result) => {
-      //   console.log(result.data);
-      dispatch(getTaskListApi());
-    });
-    promise.catch((errors) => {
-      alert(errors.response.data);
-    });
+      if (status === 200) {
+        dispatch(getTaskListApi());
+      }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+
+    // promise.then((result) => {
+    //   //   console.log(result.data);
+    //   dispatch(getTaskListApi());
+    // });
+    // promise.catch((errors) => {
+    //   alert(errors.response.data);
+    // });
   };
 };
 
