@@ -2,7 +2,7 @@ import React from "react";
 
 export default function InfoMain() {
   return (
-    <div className="">
+    <div className="container mt-3">
       <h3>Cyber Board</h3>
       <div className="info" style={{ display: "flex" }}>
         <div className="search-block">

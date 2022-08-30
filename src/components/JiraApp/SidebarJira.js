@@ -1,32 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { Layout, Menu } from "antd";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  VideoCameraOutlined,
+  SearchOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
+const { Sider } = Layout;
 
 export default function SidebarJira() {
+  const [collapsed, setCollapsed] = useState(true);
   return (
-    <div className="sideBar">
-      <div className="sideBar-top">
-        <div className="sideBar-icon">
-          <i className="fab fa-jira" />
+    <>
+      <Sider trigger={null} collapsible collapsed={collapsed} style={{ height: "100%" }}>
+        <div className="text-center text-white" style={{ fontSize: 24 }}>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: "trigger",
+            onClick: () => setCollapsed(!collapsed),
+          })}
         </div>
-        <div
-          className="sideBar-icon"
-          data-toggle="modal"
-          data-target="#searchModal"
-          style={{ cursor: "pointer" }}
-        >
-          <i className="fa fa-search" />
-          <span className="title">SEARCH ISSUES</span>
-        </div>
-        <div className="sideBar-icon">
-          <i className="fa fa-plus" />
-          <span className="title">CREATE ISSUES</span>
-        </div>
-      </div>
-      <div className="sideBar-bottom">
-        <div className="sideBar-icon">
-          <i className="fa fa-question-circle" />
-          <span className="title">ABOUT</span>
-        </div>
-      </div>
-    </div>
+        <div className="logo" />
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["1"]}
+          items={[
+            {
+              key: "1",
+              icon: <SearchOutlined style={{ fontSize: 18 }} />,
+              label: <span style={{ fontSize: 17 }}>Search</span>,
+            },
+            {
+              key: "2",
+              icon: <PlusOutlined style={{ fontSize: 18 }} />,
+              label: <span style={{ fontSize: 17 }}>Create Issues</span>,
+            },
+          ]}
+        />
+      </Sider>
+    </>
   );
 }
