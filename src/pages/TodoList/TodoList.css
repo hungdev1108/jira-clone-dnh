@@ -1,6 +1,6 @@
-body {
+/* body {
   font-family: "Roboto", sans-serif;
-  /* background-color: #84d9ba; */
+
   font-size: 16px;
 }
 
@@ -13,7 +13,7 @@ body {
 .card {
   margin: 50px auto;
   background-color: #e8f1fd;
-  /* height: 430px; */
+
   width: 350px;
   box-shadow: 0 0 6px grey;
   overflow: hidden;
@@ -65,7 +65,6 @@ body {
   font-size: 0.8rem;
 }
 
-/* Filler Button */
 .filter-btn {
   position: absolute;
   z-index: 2;
@@ -161,9 +160,7 @@ span.toggle-btn:hover {
   transform: translate(6px, 52px);
 }
 
-/* Add */
 .card__add {
-  /* background: #DE3963; */
   display: flex;
   position: relative;
 
@@ -172,14 +169,14 @@ span.toggle-btn:hover {
 .card__add input {
   width: 100%;
   height: 40px;
-  /* float: left; */
+
   color: #fff;
   font-size: 15px;
   font-weight: 400;
   text-indent: 18px;
-  /* padding: 0 60px 0 0; */
+
   background: #3c7363;
-  /* border-radius: 3px; */
+
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   border: 0px;
@@ -197,8 +194,7 @@ span.toggle-btn:hover {
   position: absolute;
   top: 0;
   right: 0;
-  /* width: 40px;
-    height: 40px; */
+
   box-shadow: 0 0 0 2px #3c7363;
   cursor: pointer;
   outline: none;
@@ -212,7 +208,6 @@ span.toggle-btn:hover {
   color: #3c7363;
 }
 
-/* Todo list */
 ul.todo {
   list-style: none;
 }
@@ -322,4 +317,4 @@ ul.todo#completed span {
 .copyright {
   opacity: 0.3;
   font-size: 14px;
-}
+} */

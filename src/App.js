@@ -1,5 +1,6 @@
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, useHistory } from "react-router-dom";
 import "./App.css";
+import LoadingComponent from "./components/GolbalSetting/LoadingComponent/LoadingComponent";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Detail from "./pages/Detail/Detail";
@@ -14,27 +15,48 @@ import TodoListSaga from "./pages/TodoListSaga/TodoListSaga";
 import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
 import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
 
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { JiraTemplate } from "./templates/HomeTemplate/JiraTemplate";
+import indexJira from "./redux/sagas/JiraSaga/indexJira";
+import CreateProject from "./pages/JiraCustom/CreateProject/CreateProject";
+import ProjectManagement from "./pages/ProjectManagement/ProjectManagement";
+
 function App() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({
+      type: "ADD_HISTORY",
+      history: history,
+    });
+  }, []);
+
   return (
-    <BrowserRouter>
+    <>
       {/* <Header /> */}
-
+      <LoadingComponent />
       <Switch>
-        <HomeTemplate exact path="/" Component={Home} />
-        <HomeTemplate exact path="/home" Component={Home} />
-        <HomeTemplate exact path="/contact" Component={Contact} />
-        <HomeTemplate exact path="/about" Component={About} />
-        <UserLoginTemplate exact path="/login" Component={LoginJira} />
-        <HomeTemplate exact path="/profile" Component={Profile} />
-        <HomeTemplate exact path="/detail/:id" Component={Detail} />
-        <HomeTemplate exact path="/todolistRCC" Component={TodoListRCC} />
-        <HomeTemplate exact path="/todolistRFC" Component={TodoListRFC} />
-        <HomeTemplate exact path="/todolistredux" Component={TodoListRedux} />
-        <HomeTemplate exact path="/todolistsaga" Component={TodoListSaga} />
+        {/* <HomeTemplate path="/home" Component={Home} /> */}
+        {/* <HomeTemplate exact path="/contact" Component={Contact} /> */}
+        {/* <HomeTemplate exact path="/about" Component={About} /> */}
+        {/* <HomeTemplate exact path="/profile" Component={Profile} /> */}
+        {/* <HomeTemplate exact path="/detail/:id" Component={Detail} /> */}
+        {/* <HomeTemplate exact path="/todolistRCC" Component={TodoListRCC} /> */}
+        {/* <HomeTemplate exact path="/todolistRFC" Component={TodoListRFC} /> */}
+        {/* <HomeTemplate exact path="/todolistredux" Component={TodoListRedux} /> */}
+        {/* <HomeTemplate exact path="/todolistsaga" Component={TodoListSaga} /> */}
 
+        <UserLoginTemplate exact path="/login" Component={LoginJira} />
+        <JiraTemplate exact path="/jira" Component={indexJira} />
+        <JiraTemplate exact path="/createproject" Component={CreateProject} />
+        <JiraTemplate exact path="/projectmanagement" Component={ProjectManagement} />
+
+        <HomeTemplate exact path="/" Component={Home} />
         <HomeTemplate path="*" Component={PageNotFound} />
       </Switch>
-    </BrowserRouter>
+    </>
   );
 }
 
