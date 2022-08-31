@@ -3,12 +3,13 @@ import { Button, Space, Table, Tag } from "antd";
 import HTMLReactParser from "html-react-parser";
 import { FormOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
+import FormEditProject from "../../components/Forms/FormEditProject/FormEditProject";
 
 export default function ProjectManagement(props) {
   // Lấy dữ liệu từ reducer projectList
   const projectList = useSelector((state) => state.ProjectJiraReducer.projectList);
   const dispatch = useDispatch();
-  console.log("project list", projectList);
+  //   console.log("project list", projectList);
   const [state, setSate] = useState({
     filteredInfo: null,
     sortedInfo: null,
@@ -126,7 +127,19 @@ export default function ProjectManagement(props) {
       key: "action",
       render: (text, record, index) => (
         <Space size="middle">
-          <Button type="primary" icon={<FormOutlined />} size="default" />
+          <Button
+            onClick={() => {
+              const action = {
+                type: "OPEN_FORM_EDIT_PROJECT",
+                Component: <FormEditProject />,
+              };
+              // dispatch len reducer noi dung
+              dispatch(action);
+            }}
+            type="primary"
+            icon={<FormOutlined />}
+            size="default"
+          />
           <Button type="danger" icon={<DeleteOutlined />} size="default" />
         </Space>
       ),

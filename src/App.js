@@ -21,6 +21,7 @@ import { JiraTemplate } from "./templates/HomeTemplate/JiraTemplate";
 import indexJira from "./redux/sagas/JiraSaga/indexJira";
 import CreateProject from "./pages/JiraCustom/CreateProject/CreateProject";
 import ProjectManagement from "./pages/ProjectManagement/ProjectManagement";
+import DrawerJira from "./HOC/JiraHOC/DrawerJira";
 
 function App() {
   const history = useHistory();
@@ -37,6 +38,7 @@ function App() {
     <>
       {/* <Header /> */}
       <LoadingComponent />
+      <DrawerJira />
       <Switch>
         {/* <HomeTemplate path="/home" Component={Home} /> */}
         {/* <HomeTemplate exact path="/contact" Component={Contact} /> */}
