@@ -63,7 +63,7 @@ function CreateProject(props) {
         <div className="form-group">
           <p>Project Category</p>
           <select name="categoryId" className="form-control" onChange={handleChange}>
-            {arrayProjectCategory.map((item, index) => {
+            {arrayProjectCategory?.map((item, index) => {
               return (
                 <option value={item.id} key={index}>
                   {item.projectCategoryName}

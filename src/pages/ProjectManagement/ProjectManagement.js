@@ -135,6 +135,13 @@ export default function ProjectManagement(props) {
               };
               // dispatch len reducer noi dung
               dispatch(action);
+              // dispatch du lieu dong hien tai len reducer
+              const actionEditProject = {
+                type: "EDIT_PROJECT",
+                projectEditModal: record,
+              };
+              dispatch(actionEditProject);
+              console.log(actionEditProject);
             }}
             type="primary"
             icon={<FormOutlined />}
