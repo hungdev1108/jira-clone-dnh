@@ -10,7 +10,7 @@ export const HomeTemplate = (props) => {
       render={(propsRoute) => {
         return (
           <>
-            <Header />
+            {/* <Header /> */}
             <Component {...propsRoute} />
           </>
         );

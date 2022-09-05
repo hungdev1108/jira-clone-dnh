@@ -8,9 +8,14 @@ export function* rootSaga() {
   yield all([
     // Nghiep vu Jira saga
     Jira.followSignin(),
+    Jira.followGetUser(),
+    Jira.followAddUserProjectSaga(),
+    Jira.followRemoveUserFromProjectSaga(),
     ProjectCategorySaga.followGetAllProjectCategory(),
     ProjectSaga.followCreateProjectSaga(),
     ProjectSaga.followGetListProjectSaga(),
     ProjectSaga.followUpdateProjectSaga(),
+    ProjectSaga.followDeleteProjectSaga(),
+    ProjectSaga.followGetProjectDetailSaga(),
   ]);
 }

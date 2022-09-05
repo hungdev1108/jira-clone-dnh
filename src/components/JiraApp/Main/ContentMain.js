@@ -1,11 +1,13 @@
 import React from "react";
 
-export default function ContentMain() {
-  return (
-    <div className="container mt-3">
-      <div className="content" style={{ display: "flex" }}>
-        <div className="card" style={{ width: "17rem", height: "25rem" }}>
-          <div className="card-header">BACKLOG 3</div>
+export default function ContentMain(props) {
+  const { projectDetail } = props;
+
+  const renderCardTaskList = () => {
+    return projectDetail.lstTask?.map((taskListDetail, index) => {
+      return (
+        <div key={index} className="card" style={{ width: "17rem", height: "25rem" }}>
+          <div className="card-header">{taskListDetail.statusName}</div>
           <ul className="list-group list-group-flush">
             <li
               className="list-group-item"
@@ -50,32 +52,40 @@ export default function ContentMain() {
                 </div>
               </div>
             </li>
-            <li className="list-group-item">Vestibulum at eros</li>
           </ul>
         </div>
-        <div className="card" style={{ width: "17rem", height: "25rem" }}>
-          <div className="card-header">SELECTED FOR DEVELOPMENT 2</div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-        <div className="card" style={{ width: "17rem", height: "25rem" }}>
-          <div className="card-header">IN PROGRESS 2</div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-          </ul>
-        </div>
-        <div className="card" style={{ width: "17rem", height: "25rem" }}>
-          <div className="card-header">DONE 3</div>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item">Cras justo odio</li>
-            <li className="list-group-item">Dapibus ac facilisis in</li>
-            <li className="list-group-item">Vestibulum at eros</li>
-          </ul>
-        </div>
+      );
+    });
+  };
+
+  return (
+    <div className="container mt-3">
+      <div className="content" style={{ display: "flex" }}>
+        {renderCardTaskList()}
       </div>
     </div>
   );
 }
+
+// <div className="card" style={{ width: "17rem", height: "25rem" }}>
+//           <div className="card-header">SELECTED FOR DEVELOPMENT 2</div>
+//           <ul className="list-group list-group-flush">
+//             <li className="list-group-item">Cras justo odio</li>
+//             <li className="list-group-item">Dapibus ac facilisis in</li>
+//           </ul>
+//         </div>
+//         <div className="card" style={{ width: "17rem", height: "25rem" }}>
+//           <div className="card-header">IN PROGRESS 2</div>
+//           <ul className="list-group list-group-flush">
+//             <li className="list-group-item">Cras justo odio</li>
+//             <li className="list-group-item">Dapibus ac facilisis in</li>
+//           </ul>
+//         </div>
+//         <div className="card" style={{ width: "17rem", height: "25rem" }}>
+//           <div className="card-header">DONE 3</div>
+//           <ul className="list-group list-group-flush">
+//             <li className="list-group-item">Cras justo odio</li>
+//             <li className="list-group-item">Dapibus ac facilisis in</li>
+//             <li className="list-group-item">Vestibulum at eros</li>
+//           </ul>
+//         </div>

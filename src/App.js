@@ -37,6 +37,7 @@ function App() {
   return (
     <>
       {/* <Header /> */}
+
       <LoadingComponent />
       <DrawerJira />
       <Switch>
@@ -54,8 +55,9 @@ function App() {
         <JiraTemplate exact path="/jira" Component={indexJira} />
         <JiraTemplate exact path="/createproject" Component={CreateProject} />
         <JiraTemplate exact path="/projectmanagement" Component={ProjectManagement} />
+        <JiraTemplate exact path="/projectdetail/:projectId" Component={indexJira} />
 
-        <HomeTemplate exact path="/" Component={Home} />
+        <UserLoginTemplate exact path="/" Component={LoginJira} />
         <HomeTemplate path="*" Component={PageNotFound} />
       </Switch>
     </>
